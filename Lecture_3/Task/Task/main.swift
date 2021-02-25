@@ -105,10 +105,10 @@ coupe.isEngineStart = .start
 sedan.isEngineStart = .stop
 trunk.changeOccupiedCapacity(action: .unload, capacity: 351)
 
-func description(array: Array<Car>) {
+func createDescription(array: Array<Car>) {
     for element in array {
         print("Описание автомобиля:\nТип автомобиля: \(element.type.rawValue)\nМарка автомобиля: \(element.model.rawValue)\nГод выпуска: \(element.year)\nЦвет автомобиля: \(element.color.rawValue)\nВмещаемый объём груза: \(element.trunkCapacity)\nЗанятый объём: \(element.occupiedTrunkCapacity)\n\(element.isEngineStart.rawValue)\n\(element.isWindowOpen.rawValue)\n\n")
     }
 }
 
-description(array: cars)
+createDescription(array: cars)
