@@ -7,52 +7,40 @@
 
 import Foundation
 
-enum TruckCarTypes: String {
-    case fuel = "Бензовоз"
-    case panel = "Автофургон"
-    case bulldozer = "Бульдозер"
-}
-
-enum CarModels: String {
-    case audi = "Audi"
-    case bmw = "BMW"
-    case ford = "Ford"
-    case hyundai = "Hyundai"
-    case kia = "Kia"
-    case mazda = "Mazda"
-    case renault = "Renault"
-}
-
-enum CarColors: String {
-    case red = "Красный"
-    case green = "Зелёный"
-    case white = "Белый"
-    case blue = "Голубой"
-    case black = "Чёрный"
-    case yellow = "Жёлтый"
-}
-
-enum EngineStates: String {
-    case start = "Автомобиль заведён"
-    case stop = "Автомобиль заглушен"
-}
-
-enum WindowStates: String {
-    case open = "Окна автомобиля открыты"
-    case close = "Окна автомобиля закрыты"
-}
-
-enum CargoTypes: String {
-    case fuel = "Топливо"
-    case flower = "Цветы"
-    case rock = "Камни"
-}
-
-enum TrunkActions {
-    case load, unload
-}
-
 class Car {
+    enum CarModels: String {
+        case audi = "Audi"
+        case bmw = "BMW"
+        case ford = "Ford"
+        case hyundai = "Hyundai"
+        case kia = "Kia"
+        case mazda = "Mazda"
+        case renault = "Renault"
+    }
+
+    enum CarColors: String {
+        case red = "Красный"
+        case green = "Зелёный"
+        case white = "Белый"
+        case blue = "Голубой"
+        case black = "Чёрный"
+        case yellow = "Жёлтый"
+    }
+
+    enum EngineStates: String {
+        case start = "Автомобиль заведён"
+        case stop = "Автомобиль заглушен"
+    }
+
+    enum WindowStates: String {
+        case open = "Окна автомобиля открыты"
+        case close = "Окна автомобиля закрыты"
+    }
+    
+    enum TrunkActions {
+        case load, unload
+    }
+    
     let model: CarModels
     let year: UInt16
     let trunkCapacity: UInt32
@@ -87,6 +75,18 @@ class Car {
 }
 
 class TruckCar: Car {
+    enum TruckCarTypes: String {
+        case fuel = "Бензовоз"
+        case panel = "Автофургон"
+        case bulldozer = "Бульдозер"
+    }
+
+    enum CargoTypes: String {
+        case fuel = "Топливо"
+        case flower = "Цветы"
+        case rock = "Камни"
+    }
+    
     let truckType: TruckCarTypes
     let cargoType: CargoTypes
     var isSemitrailerPulling: Bool
@@ -98,15 +98,13 @@ class TruckCar: Car {
         
         super.init(model: model, year: year, capacity: capacity, color: color, engineState: engineState, windowState: windowState, occupiedCapacity: occupiedCapacity)
     }
-    
-    
 }
 
 
 class SportCar: Car {
     enum SportCarType: String {
         case sportCar = "Спорткар"
-        case superCar = "Супепкар"
+        case superCar = "Суперкар"
         case hyperCar = "Гиперкар"
     }
     
