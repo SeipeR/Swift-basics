@@ -70,7 +70,12 @@ class Car {
         occupiedTrunkCapacity = occupiedCapacity
     }
     
-    func changeOccupiedCapacity(){
+    func changeOccupiedCapacity(action: TrunkActions, capacity: UInt32) -> UInt32 {
+        return capacity
+    }
+    
+    func createCarDescription() {
+        
     }
 }
 
@@ -97,6 +102,31 @@ class TruckCar: Car {
         isSemitrailerPulling = semitrailerPulling
         
         super.init(model: model, year: year, capacity: capacity, color: color, engineState: engineState, windowState: windowState, occupiedCapacity: occupiedCapacity)
+    }
+    
+    override func changeOccupiedCapacity(action: TrunkActions, capacity: UInt32) -> UInt32 {
+        switch action {
+            case .load:
+                guard (occupiedTrunkCapacity + capacity) <= trunkCapacity else {
+                    print("Максимально возможное значение объёма для погрузки: \(trunkCapacity - occupiedTrunkCapacity). \nВозвращено значение по умолчанию: \(occupiedTrunkCapacity)")
+                    return occupiedTrunkCapacity
+                }
+                occupiedTrunkCapacity += capacity
+                print("В автомобиль типа \(truckType) загружено \(capacity)")
+            case .unload:
+                guard capacity <= occupiedTrunkCapacity else {
+                    print("Максимально возможное значение объёма для выгрузки: \(occupiedTrunkCapacity). \nВозвращено значение по умолчанию: \(occupiedTrunkCapacity)")
+                    return occupiedTrunkCapacity
+                }
+                occupiedTrunkCapacity -= capacity
+                print("Из автомобиля типа \(truckType) выгружено \(capacity)")
+        }
+        print("Текущий занятый объём автомобиля типа \(truckType): \(occupiedTrunkCapacity)")
+        return occupiedTrunkCapacity
+    }
+    
+    override func createCarDescription() {
+        print("Описание автомобиля:\nТип грузового автомобиля: \(truckType.rawValue)\nМарка автомобиля: \(model.rawValue)\nГод выпуска: \(year)\nЦвет автомобиля: \(color.rawValue)\nПеревозимый груз: \(cargoType)\nИмеется полуприцеп: \(isSemitrailerPulling)\nВмещаемый объём груза: \(trunkCapacity)\nЗанятый объём: \(occupiedTrunkCapacity)\n\(isEngineStart.rawValue)\n\(isWindowOpen.rawValue)\n\n")
     }
 }
 
@@ -126,44 +156,29 @@ class SportCar: Car {
         
         super.init(model: model, year: year, capacity: capacity, color: color, engineState: engineState, windowState: windowState, occupiedCapacity: occupiedCapacity)
     }
+    
+    override func changeOccupiedCapacity(action: TrunkActions, capacity: UInt32) -> UInt32 {
+        switch action {
+            case .load:
+                guard (occupiedTrunkCapacity + capacity) <= trunkCapacity else {
+                    print("Максимально возможное значение объёма для погрузки: \(trunkCapacity - occupiedTrunkCapacity). \nВозвращено значение по умолчанию: \(occupiedTrunkCapacity)")
+                    return occupiedTrunkCapacity
+                }
+                occupiedTrunkCapacity += capacity
+                print("В автомобиль типа \(sportCarType) загружено \(capacity)")
+            case .unload:
+                guard capacity <= occupiedTrunkCapacity else {
+                    print("Максимально возможное значение объёма для выгрузки: \(occupiedTrunkCapacity). \nВозвращено значение по умолчанию: \(occupiedTrunkCapacity)")
+                    return occupiedTrunkCapacity
+                }
+                occupiedTrunkCapacity -= capacity
+                print("Из автомобиля типа \(sportCarType) выгружено \(capacity)")
+        }
+        print("Текущий занятый объём автомобиля типа \(sportCarType): \(occupiedTrunkCapacity)")
+        return occupiedTrunkCapacity
+    }
+    
+    override func createCarDescription() {
+        print("Описание автомобиля:\nТип спортивного автомобиля: \(sportCarType.rawValue)\nМарка автомобиля: \(model.rawValue)\nГод выпуска: \(year)\nЦвет автомобиля: \(color.rawValue)\nРасположение двигателя: \(engineLocation)\nМаксимальная скорость: \(maximumSpeed)\nУстановлен спойлер: \(isSpoilerInstalled)\nВмещаемый объём груза: \(trunkCapacity)\nЗанятый объём: \(occupiedTrunkCapacity)\n\(isEngineStart.rawValue)\n\(isWindowOpen.rawValue)\n\n")
+    }
 }
-//func changeOccupiedCapacity(action: TrunkActions, capacity: UInt32) -> UInt32 {
-//    switch action {
-//        case .load:
-//            guard (occupiedTrunkCapacity + capacity) <= trunkCapacity else {
-//                print("Максимально возможное значение объёма для погрузки: \(trunkCapacity - occupiedTrunkCapacity). \nВозвращено значение по умолчанию: \(occupiedTrunkCapacity)")
-//                return occupiedTrunkCapacity
-//            }
-//            occupiedTrunkCapacity += capacity
-//            print("В автомобиль типа \(type.rawValue) загружено \(capacity)")
-//        case .unload:
-//            guard capacity <= occupiedTrunkCapacity else {
-//                print("Максимально возможное значение объёма для выгрузки: \(occupiedTrunkCapacity). \nВозвращено значение по умолчанию: \(occupiedTrunkCapacity)")
-//                return occupiedTrunkCapacity
-//            }
-//            occupiedTrunkCapacity -= capacity
-//            print("Из автомобиля типа \(type.rawValue) выгружено \(capacity)")
-//    }
-//    print("Текущий занятый объём автомобиля типа \(type.rawValue): \(occupiedTrunkCapacity)")
-//    return occupiedTrunkCapacity
-//}
-//
-//var sedan = Car(type: .sedan, model: .audi, year: 2003, capacity: 500, color: .black, engineState: .start, windowState: .open, occupiedCapacity: 350)
-//var coupe = Car(type: .coupe, model: .kia, year: 1995, capacity: 750, color: .blue, engineState: .stop, windowState: .close, occupiedCapacity: 460)
-//var sports = Car(type: .sports, model: .mazda, year: 2016, capacity: 200, color: .green, engineState: .start, windowState: .close, occupiedCapacity: 50)
-//var hatchback = Car(type: .hatchback, model: .hyundai, year: 1999, capacity: 900, color: .yellow, engineState: .stop, windowState: .open, occupiedCapacity: 400)
-//var truck = TruckCar(truckType: .bulldozer, cargoType: .rock, semitrailerPulling: true, model: .renault, year: 2006, capacity: 30000, color: .blue, engineState: .start, windowState: .close, occupiedCapacity: 100)
-//var cars = [sedan, coupe, sports, hatchback, truck]
-//
-//sedan.color = .blue
-//coupe.isEngineStart = .start
-//sedan.isEngineStart = .stop
-//trunk.changeOccupiedCapacity(action: .unload, capacity: 351)
-//
-//func createDescription(array: Array<Car>) {
-//    for element in array {
-//        print("Описание автомобиля:\nТип автомобиля: \(element.type.rawValue)\nМарка автомобиля: \(element.model.rawValue)\nГод выпуска: \(element.year)\nЦвет автомобиля: \(element.color.rawValue)\nВмещаемый объём груза: \(element.trunkCapacity)\nЗанятый объём: \(element.occupiedTrunkCapacity)\n\(element.isEngineStart.rawValue)\n\(element.isWindowOpen.rawValue)\n\n")
-//    }
-//}
-//
-//createDescription(array: cars)
