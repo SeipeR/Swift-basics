@@ -95,12 +95,40 @@ class TruckCar: Car {
         self.truckType = truckType
         self.cargoType = cargoType
         isSemitrailerPulling = semitrailerPulling
+        
         super.init(model: model, year: year, capacity: capacity, color: color, engineState: engineState, windowState: windowState, occupiedCapacity: occupiedCapacity)
     }
     
     
 }
 
+
+class SportCar: Car {
+    enum SportCarType: String {
+        case sportCar = "Спорткар"
+        case superCar = "Супепкар"
+        case hyperCar = "Гиперкар"
+    }
+    
+    enum EngineLocation: String {
+        case rear = "Заднее расположение двигателя"
+        case centre = "Центральное расположение двигателя"
+    }
+    
+    let sportCarType: SportCarType
+    let engineLocation: EngineLocation
+    let maximumSpeed: UInt16
+    var isSpoilerInstalled: Bool
+    
+    init(type: SportCarType, engineLocation: EngineLocation, maximumSpeed: UInt16, spoiler: Bool,model: CarModels, year: UInt16, capacity: UInt32, color: CarColors, engineState: EngineStates, windowState: WindowStates, occupiedCapacity: UInt32) {
+        sportCarType = type
+        self.engineLocation = engineLocation
+        self.maximumSpeed = maximumSpeed
+        isSpoilerInstalled = spoiler
+        
+        super.init(model: model, year: year, capacity: capacity, color: color, engineState: engineState, windowState: windowState, occupiedCapacity: occupiedCapacity)
+    }
+}
 //func changeOccupiedCapacity(action: TrunkActions, capacity: UInt32) -> UInt32 {
 //    switch action {
 //        case .load:
