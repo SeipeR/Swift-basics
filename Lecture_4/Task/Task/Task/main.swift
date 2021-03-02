@@ -182,3 +182,22 @@ class SportCar: Car {
         print("Описание автомобиля:\nТип спортивного автомобиля: \(sportCarType.rawValue)\nМарка автомобиля: \(model.rawValue)\nГод выпуска: \(year)\nЦвет автомобиля: \(color.rawValue)\nРасположение двигателя: \(engineLocation)\nМаксимальная скорость: \(maximumSpeed)\nУстановлен спойлер: \(isSpoilerInstalled)\nВмещаемый объём груза: \(trunkCapacity)\nЗанятый объём: \(occupiedTrunkCapacity)\n\(isEngineStart.rawValue)\n\(isWindowOpen.rawValue)\n\n")
     }
 }
+
+var truck1 = TruckCar(truckType: .bulldozer, cargoType: .rock, semitrailerPulling: true, model: .renault, year: 2006, capacity: 30000, color: .blue, engineState: .start, windowState: .close, occupiedCapacity: 8000)
+var truck2 = TruckCar(truckType: .fuel, cargoType: .fuel, semitrailerPulling: true, model: .ford, year: 1999, capacity: 20000, color: .black, engineState: .stop, windowState: .open, occupiedCapacity: 0)
+var truck3 = TruckCar(truckType: .panel, cargoType: .flower, semitrailerPulling: false, model: .renault, year: 2015, capacity: 5000, color: .red, engineState: .start, windowState: .close, occupiedCapacity: 1500)
+
+truck3.createCarDescription()
+truck3.color = .green
+truck1.changeOccupiedCapacity(action: .unload, capacity: 40000)
+truck2.changeOccupiedCapacity(action: .load, capacity: 14030)
+truck3.isSemitrailerPulling = false
+
+var sportCar1 = SportCar(type: .sportCar, engineLocation: .centre, maximumSpeed: 250, spoiler: false, model: .audi, year: 2018, capacity: 300, color: .yellow, engineState: .stop, windowState: .close, occupiedCapacity: 50)
+var sportCar2 = SportCar(type: .superCar, engineLocation: .rear, maximumSpeed: 300, spoiler: true, model: .mazda, year: 2020, capacity: 200, color: .black, engineState: .start, windowState: .open, occupiedCapacity: 0)
+var sportCar3 = SportCar(type: .hyperCar, engineLocation: .centre, maximumSpeed: 370, spoiler: true, model: .bmw, year: 2019, capacity: 50, color: .yellow, engineState: .stop, windowState: .open, occupiedCapacity: 10)
+
+sportCar3.isEngineStart = .start
+sportCar2.isWindowOpen = .close
+sportCar1.isSpoilerInstalled = true
+sportCar3.changeOccupiedCapacity(action: .unload, capacity: 10)
