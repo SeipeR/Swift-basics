@@ -217,3 +217,30 @@ sportCar3.changeEngiteState(newEngineState: .start)
 sportCar2.changeWindowState(newWindowState: .close)
 sportCar1.spoiler = .installed
 sportCar3.changeOccupiedCapacity(action: .unload, capacity: 10)
+
+var truckList = [truck1, truck2, truck3]
+var sportCarList = [sportCar1, sportCar2, sportCar3]
+
+func createShortDescription(array: Array<Car>) {
+    for element in array {
+        element.createShortCarDescription()
+    }
+}
+
+func createFullTrucksDescription(array: Array<TruckCar>) {
+    for element in array {
+        element.createFullCarDescription()
+    }
+}
+
+func createFullSportCarsDescription(array: Array<SportCar>) {
+    for element in array {
+        element.createFullCarDescription()
+    }
+}
+
+createShortDescription(array: truckList)
+createShortDescription(array: sportCarList)
+
+createFullTrucksDescription(array: truckList)
+createFullSportCarsDescription(array: sportCarList)
