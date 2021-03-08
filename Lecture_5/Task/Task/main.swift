@@ -199,3 +199,21 @@ extension SportCar: ConsolePrintable {
         return "Описание автомобиля:\nТип спортивного автомобиля: \(sportCarType.rawValue)\nМарка автомобиля: \(model.rawValue)\nГод выпуска: \(year)\nЦвет автомобиля: \(color.rawValue)\nРасположение двигателя: \(engineLocation.rawValue)\nМаксимальная скорость: \(maximumSpeed)\nУстановлен спойлер: \(spoiler.rawValue)\nВмещаемый объём груза: \(trunkCapacity)\nЗанятый объём: \(occupiedTrunkCapacity)\n\(isEngineStart.rawValue)\n\(isWindowOpen.rawValue)\n\n"
     }
 }
+
+var truck1 = TruckCar(truckType: .bulldozer, cargoType: .rock, semitrailer: .installed, model: .renault, year: 2006, trunkCapacity: 30000, color: .blue, engineState: .start, windowState: .close, occupiedCapacity: 8000)
+var truck2 = TruckCar(truckType: .fuel, cargoType: .fuel, semitrailer: .installed, model: .ford, year: 1999, trunkCapacity: 20000, color: .black, engineState: .stop, windowState: .open, occupiedCapacity: 0)
+var truck3 = TruckCar(truckType: .panel, cargoType: .flower, semitrailer: .notInstalled, model: .renault, year: 2015, trunkCapacity: 5000, color: .red, engineState: .start, windowState: .close, occupiedCapacity: 1500)
+
+truck3.changeCarColor(newColor: .green)
+truck1.changeOccupiedCapacity(action: .unload, capacity: 40000)
+truck2.changeOccupiedCapacity(action: .load, capacity: 14030)
+truck3.semitrailer = .installed
+
+var sportCar1 = SportCar(type: .sportCar, engineLocation: .centre, maximumSpeed: 250, spoiler: .notInstalled, model: .audi, year: 2018, trunkCapacity: 300, color: .yellow, engineState: .stop, windowState: .close, occupiedCapacity: 50)
+var sportCar2 = SportCar(type: .superCar, engineLocation: .rear, maximumSpeed: 300, spoiler: .installed, model: .mazda, year: 2020, trunkCapacity: 200, color: .black, engineState: .start, windowState: .open, occupiedCapacity: 0)
+var sportCar3 = SportCar(type: .hyperCar, engineLocation: .centre, maximumSpeed: 370, spoiler: .installed, model: .bmw, year: 2019, trunkCapacity: 50, color: .yellow, engineState: .stop, windowState: .open, occupiedCapacity: 10)
+
+sportCar3.changeEngiteState(newEngineState: .start)
+sportCar2.changeWindowState(newWindowState: .close)
+sportCar1.spoiler = .installed
+sportCar3.changeOccupiedCapacity(action: .unload, capacity: 10)
