@@ -177,3 +177,25 @@ class SportCar: Car {
         print("\(sportCarType.rawValue) \(model.rawValue)")
     }
 }
+
+protocol ConsolePrintable: CustomStringConvertible {
+    func createFullCarDescription()
+}
+
+extension ConsolePrintable {
+    func createFullCarDescription() {
+        print(description)
+    }
+}
+
+extension TruckCar: ConsolePrintable {
+    var description: String {
+        return "Описание автомобиля:\nТип грузового автомобиля: \(truckType.rawValue)\nМарка автомобиля: \(model.rawValue)\nГод выпуска: \(year)\nЦвет автомобиля: \(color.rawValue)\nПеревозимый груз: \(cargoType.rawValue)\nИмеется полуприцеп: \(semitrailer.rawValue)\nВмещаемый объём груза: \(trunkCapacity)\nЗанятый объём: \(occupiedTrunkCapacity)\n\(isEngineStart.rawValue)\n\(isWindowOpen.rawValue)\n\n"
+    }
+}
+
+extension SportCar: ConsolePrintable {
+    var description: String {
+        return "Описание автомобиля:\nТип спортивного автомобиля: \(sportCarType.rawValue)\nМарка автомобиля: \(model.rawValue)\nГод выпуска: \(year)\nЦвет автомобиля: \(color.rawValue)\nРасположение двигателя: \(engineLocation.rawValue)\nМаксимальная скорость: \(maximumSpeed)\nУстановлен спойлер: \(spoiler.rawValue)\nВмещаемый объём груза: \(trunkCapacity)\nЗанятый объём: \(occupiedTrunkCapacity)\n\(isEngineStart.rawValue)\n\(isWindowOpen.rawValue)\n\n"
+    }
+}
