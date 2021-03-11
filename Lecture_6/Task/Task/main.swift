@@ -17,6 +17,16 @@ struct Fifo<T> {
             return nil
         }
     }
+    
+    subscript (index: UInt) -> T? {
+        if index < array.count {
+            print(array[Int(index)])
+            return array[Int(index)]
+        } else {
+            print("Возвращено значение nil")
+            return nil
+        }
+    }
 }
 
 var exampleIntArray = Fifo<Int>()
@@ -67,7 +77,7 @@ print(exampleStringArray.array.map { (string) -> String in
         var output = ""
         
         func desc(name: String, arcanaName: String) -> String {
-            return "\(name) using \(arcana[arcanaName]!) arcana"
+            return "\(name) is using \(arcana[arcanaName]!) arcana"
         }
     
         switch string {
@@ -97,3 +107,9 @@ print(exampleStringArray.array.map { (string) -> String in
     
         return output
 })
+
+exampleIntArray[0]
+exampleIntArray[10]
+
+exampleStringArray[5]
+exampleStringArray[10]
