@@ -73,6 +73,8 @@ class PartyManagement {
         
         party = tempParty
         print("\(member.name.rawValue) (\(member.arcana.rawValue)) присоединяется к отряду")
+        test.printCurrentParty(members: test.party)
+        
         return party
     }
     
@@ -91,7 +93,17 @@ class PartyManagement {
         print("\(party[member]!.name.rawValue) (\(party[member]!.arcana.rawValue)) покидает отряд")
         party[member] = nil
         
+        printCurrentParty(members: party)
+        
         return party
+    }
+    
+    func printCurrentParty (members: [Roles: PersonaUser]) {
+        print("\n----------\nТекущий отряд:")
+        for member in members {
+            print("\(member.key.rawValue): \(member.value.name.rawValue). Аркана: \(member.value.arcana.rawValue)")
+        }
+        print("----------\n")
     }
 }
 
